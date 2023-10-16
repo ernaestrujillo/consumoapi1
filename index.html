@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumo Api</title>
+</head>
+<body>
+    <h1>Monedas:</h1>
+    <ul id="lstMonedas">
+
+    </ul>
+<script>
+    const host = 'api.frankfurter.app';
+
+    fetch(`https://${host}/currencies`)
+    .then(resp => resp.json())
+    .then((data) => {
+        let lista=document.querySelector("#lstMonedas");
+        let list="";
+        Object.keys(data).forEach(key => {
+            list+=`<li>${data[key]} - [${key}]</li>`;
+        });
+
+        lista.innerHTML=list;
+    });
+
+    console.log("Hola");
+
+</script>
+</body>
+</html>
