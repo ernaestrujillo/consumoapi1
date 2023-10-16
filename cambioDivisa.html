@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio</title>
+</head>
+<body>
+    <h1>Conversión</h1>
+    <form id="frmConversion">
+        <label>Conversión</label><br/>
+        MXN<input type="number" id="inpImporte"/> a USD <input type="number" id="inpResult"/>
+        <a href="javascript:convertir()">Convertir</a>
+    </form>
+    <script>
+
+        function convertir(){
+            const host = 'api.frankfurter.app';
+            let importe=document.querySelector("#inpImporte");
+
+            fetch(`https://${host}/latest?amount=${importe.value}&from=MXN&to=USD`)
+            .then(resp => resp.json())
+            .then((data) => {
+                let inpResultado=document.querySelector("#inpResult");
+                inpResultado.value=data.rates.USD;
+                console.log(data);
+            });
+        }
+
+        
+    </script>
+</body>
+</html>
